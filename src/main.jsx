@@ -10,19 +10,21 @@ import Home from './Pages/Home/Home';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Root></Root>,
-    children:[
+    path: '/',
+    element: <Root />,
+    children: [
       {
-        path:"/",
-        component:<Home></Home>
-      }
-    ]
+        path: '/',
+        element: <Home />,
+      },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+     <div className='max-w-screen-xl mx-auto'>
      <RouterProvider router={router} />
+     </div>
   </React.StrictMode>,
 )
