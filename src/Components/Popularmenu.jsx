@@ -7,7 +7,7 @@ const Popularmenu = () => {
     const [menu,setMenu]=useState([]);
     useEffect(()=>{
         fetch('/menu.json')
-        .then(res=>res.json)
+        .then(res=>res.json())
         .then(data=>{
             const popularItems=data.filter(item=>item.category==='popular');
             setMenu(popularItems)
@@ -20,7 +20,7 @@ const Popularmenu = () => {
             subHeading={"Popular Items"}
             >
             </SectionTitle>
-            <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my">
                 {
                     menu.map(item=> <MenuIteam 
                         key={item._id}
