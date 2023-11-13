@@ -11,10 +11,17 @@ import img2 from "../../assets/home/slide2.jpg";
 import img3 from "../../assets/home/slide3.jpg";
 import img4 from "../../assets/home/slide4.jpg";
 import img5 from "../../assets/home/slide5.jpg";
+import SectionTitle from "../../Components/SectionTitle";
 
 const Catagory = () => {
   return (
-    <div>
+    <section>
+      <SectionTitle 
+      subHeading={"From 11.00 am to 10.00 pm"}
+      heading={"Order Online"}
+      >
+
+      </SectionTitle>
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
@@ -46,7 +53,7 @@ const Catagory = () => {
           <h2 className="text-4xl uppercase text-center -mt-16">Salad</h2>
         </SwiperSlide>
       </Swiper>
-    </div>
+    </section>
   );
 };
 
