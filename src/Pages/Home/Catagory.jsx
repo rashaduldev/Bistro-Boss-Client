@@ -34,23 +34,23 @@ const Catagory = () => {
       >
         <SwiperSlide>
           <img src={img1} alt="" />
-          <h2 className="text-4xl uppercase text-center -mt-28">Salad</h2>
+          <h2 className="md:text-4xl uppercase text-center -mt-9 md:-mt-28">Salad</h2>
         </SwiperSlide>
         <SwiperSlide>
           <img src={img2} alt="" />
-          <h2 className="text-4xl uppercase text-center -mt-28">Pizza </h2>
+          <h2 className="md:text-4xl uppercase text-center -mt-9 md:-mt-28">Pizza </h2>
         </SwiperSlide>
         <SwiperSlide>
           <img src={img3} alt="" />
-          <h2 className="text-4xl uppercase text-center -mt-28">Soup</h2>
+          <h2 className="md:text-4xl uppercase text-center -mt-9 md:-mt-28">Soup</h2>
         </SwiperSlide>
         <SwiperSlide>
           <img src={img4} alt="" />
-          <h2 className="text-4xl uppercase text-center -mt-28">Salad</h2>
+          <h2 className="md:text-4xl uppercase text-center -mt-9 md:-mt-28">Salad</h2>
         </SwiperSlide>
         <SwiperSlide >
           <img src={img5} alt="" />
-          <h2 className="text-4xl uppercase text-center -mt-16">Salad</h2>
+          <h2 className="md:text-4xl uppercase text-center -mt-9 md:-mt-28">Salad</h2>
         </SwiperSlide>
       </Swiper>
     </section>
