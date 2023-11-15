@@ -8,6 +8,7 @@ import {
 import Root from './Root/Root';
 import Home from './Pages/Home/Home';
 import Menu from './Pages/Menu/Menu';
+import {HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
@@ -28,8 +29,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     <div className='max-w-screen-xl mx-auto'>
+    <HelmetProvider>
+    <div className='max-w-screen-xl mx-auto'>
      <RouterProvider router={router} />
      </div>
+    </HelmetProvider>
   </React.StrictMode>,
 )
