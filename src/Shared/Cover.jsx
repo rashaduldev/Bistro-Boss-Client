@@ -1,5 +1,6 @@
 import { Parallax } from 'react-parallax';
 
+// eslint-disable-next-line react/prop-types
 const Cover = ({img,title}) => {
   return (
     <div>
