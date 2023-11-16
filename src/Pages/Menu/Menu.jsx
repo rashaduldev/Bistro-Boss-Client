@@ -13,6 +13,7 @@ const Menu = () => {
   const soup=menu.filter(item=>item.category==='soup');
   const pizza=menu.filter(item=>item.category==='pizza');
   const offered=menu.filter(item=>item.category==='offered');
+  const salad=menu.filter(item=>item.category==='salad');
     return (
         <div>
              <Helmet>
@@ -23,10 +24,18 @@ const Menu = () => {
       <SectionTitle subHeading={'---Dont miss---'} heading={'TODAY S OFFER'}></SectionTitle>
       {/* offered */}
       <MenuCatagory items={offered}></MenuCatagory>
-      
-      <MenuCatagory items={offered}></MenuCatagory>
-
-
+      {/* desserts */}
+      <Cover img={menuimg} title="DESSERTS"></Cover>
+      <MenuCatagory items={dessert}></MenuCatagory>
+        {/* PIZZA */}
+      <Cover img={menuimg} title="PIZZA"></Cover>
+      <MenuCatagory items={pizza}></MenuCatagory>
+        {/* SALADS */}
+      <Cover img={menuimg} title="SALADS"></Cover>
+      <MenuCatagory items={salad}></MenuCatagory>
+        {/* soups */}
+      <Cover img={menuimg} title="SOUPS"></Cover>
+      <MenuCatagory items={soup}></MenuCatagory>
         </div>
     );
 };
