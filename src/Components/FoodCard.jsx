@@ -1,5 +1,5 @@
-const FoodCard = ({items}) => {
-    const {name,image,recipe,price}=items;
+const FoodCard = ({item}) => {
+    const {name,image,recipe,price}=item;
   return (
     <div>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
