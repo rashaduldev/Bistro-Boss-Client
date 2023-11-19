@@ -7,6 +7,7 @@ const Navber = () => {
     <li><a><Link to={'/'}>Home</Link></a></li>
     <li><a><Link to={'/menu'}>Menu</Link></a></li>
     <li><a><Link to={'/order/salad'}>Our Shop</Link></a></li>
+    <li><a><Link to={'/login'}>Log in</Link></a></li>
     </>
 
     return (

@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import Catagory from "./Catagory";
 import Featured from "./Featured";
 import Testimonials from "./Testimonials";
+// import FoodPagination from "../../Components/FoodPagination";
 
 
 const Home = () => {
@@ -16,7 +17,9 @@ const Home = () => {
         <Catagory></Catagory>
         <Popularmenu></Popularmenu>
         <Featured></Featured>
+        {/* <FoodPagination></FoodPagination> */}
         <Testimonials></Testimonials>
+    
         </div>
     );
 };
