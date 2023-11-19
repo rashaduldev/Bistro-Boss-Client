@@ -1,13 +1,24 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 
 const Navber = () => {
+const {user,signOut}=useContext(AuthContext);
+
+const handleSignout=() => {
+  signOut()
+  .then(() => {})
+  .catch((err) => {
+    console.log(err);
+  })
+};
+
   const navitems=
     <>
     <li><a><Link to={'/'}>Home</Link></a></li>
     <li><a><Link to={'/menu'}>Menu</Link></a></li>
     <li><a><Link to={'/order/salad'}>Our Shop</Link></a></li>
-    <li><a><Link to={'/login'}>Log in</Link></a></li>
     </>
 
     return (
@@ -30,7 +41,8 @@ const Navber = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+  {user? <button className=""><Link to={'/login'}>Sign Out</Link></button>
+    :<button><a><Link to={'/login'}>Log in</Link></a></button>}
   </div>
 </div>
         </div>
