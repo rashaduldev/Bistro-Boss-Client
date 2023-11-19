@@ -7,7 +7,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 const Root = () => {
     const location=useLocation();
     console.log(location);
-    const noHeadernoFooter=location.pathname.includes('login');
+    const noHeadernoFooter=location.pathname.includes('login')|| location.pathname.includes('signup');
     console.log(noHeadernoFooter);
     return (
         <div>
