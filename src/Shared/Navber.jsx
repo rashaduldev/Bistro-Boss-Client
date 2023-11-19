@@ -41,8 +41,8 @@ const handleSignout=() => {
     </ul>
   </div>
   <div className="navbar-end">
-  {user? <button className=""><Link to={'/login'}>Sign Out</Link></button>
-    :<button><a><Link to={'/login'}>Log in</Link></a></button>}
+  {user? <button onClick={handleSignout} className="btn btn-outline text-white"><Link to={'/login'}>Sign Out</Link></button>
+    :<button className="btn btn-outline btn-secondary"><a><Link to={'/login'}>Log in</Link></a></button>}
   </div>
 </div>
         </div>
