@@ -74,7 +74,7 @@ const Signup = () => {
                 />
                 {errors.name && (
                   <span className="text-red-600 mt-2">
-                    This field is required !
+                    Name is required !
                   </span>
                 )}
               </div>
@@ -91,7 +91,7 @@ const Signup = () => {
                 />
                 {errors.email && (
                   <span className="text-red-600 mt-2">
-                    This field is required !
+                   Email is required !
                   </span>
                 )}
               </div>
