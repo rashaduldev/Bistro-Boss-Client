@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   LoadCanvasTemplate,
   loadCaptchaEnginge,
   validateCaptcha,
 } from "react-simple-captcha";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Signup = () => {
+    const {createUser}=useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -14,7 +17,14 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) =>{ 
+    console.log(data)
+    const email=data.email;
+    const password=data.password;
+    createUser(email,password);
+    console.log(createUser);
+
+};
 
   const captcharef = useRef(null);
   const [disabled, setDisabled] = useState(true);
@@ -36,6 +46,9 @@ const Signup = () => {
   }, []);
   return (
     <div>
+          <Helmet>
+        <title>Bistro Boss | Signup</title>
+      </Helmet>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -145,9 +158,7 @@ const Signup = () => {
                 )}
               </div>
               <div className="form-control mt-6">
-                <button disabled={disabled} className="btn btn-primary">
-                  Signup
-                </button>
+                <input disabled={disabled} className="btn btn-primary text-white" type="submit" value={'Sign up'} />
               </div>
             </form>
             <p className="text-center my-4">
