@@ -10,7 +10,7 @@ const Signup = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     formState: { errors },
   } = useForm();
 
@@ -91,14 +91,26 @@ const Signup = () => {
                   name="password"
                   {...register(
                     "password",
-                    { required: true  },
-                    // { minLength: 6, max: 99 }
+                    { required: true,
+                      minLength: 6, 
+                      maxLength: 99,
+                      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+                    }
                   )}
                   placeholder="password"
                   className="input input-bordered"
                 />
                 {errors.password?.type === "required" && (
-                  <p className="text-red-600">Password is required</p>
+                  <p className="text-red-600 mt-2">Password is required</p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-600 mt-2">Please minimum enter 6 charecter</p>
+                )}
+                {errors.password?.type === "max" && (
+                  <p className="text-red-600">Please maximum enter 20 charecter</p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-600">Please enter at least a symbol, upper and lower case letters and a number</p>
                 )}
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
