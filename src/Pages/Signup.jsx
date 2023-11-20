@@ -7,9 +7,11 @@ import {
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const {createUser}=useContext(AuthContext);
+    const navigate=useNavigate();
   const {
     register,
     handleSubmit,
@@ -23,6 +25,8 @@ const Signup = () => {
     const password=data.password;
     createUser(email,password);
     console.log(createUser);
+
+    navigate('/');
 
 };
 
@@ -80,6 +84,23 @@ const Signup = () => {
               </div>
               <div className="form-control">
                 <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Photo Url"
+                  className="input input-bordered"
+                  name="name"
+                  {...register("photourl", { required: true })}
+                />
+                {errors.photourl && (
+                  <span className="text-red-600 mt-2">
+                    photourl is required !
+                  </span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
@@ -107,6 +128,7 @@ const Signup = () => {
                     { required: true,
                       minLength: 6, 
                       maxLength: 99,
+                      // eslint-disable-next-line no-useless-escape
                       pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
                     }
                   )}

@@ -8,10 +8,15 @@ import {
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [disabled, setDisabled] = useState(true);
+  const Navigate=useNavigate();
+  const Location=useLocation();
+
+  const from=Location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -26,7 +31,7 @@ const Login = () => {
         console.log(user);
         let timerInterval;
         Swal.fire({
-          title: "Auto close alert!",
+          title: "Login Successfully!",
           html: "I will close in <b></b> milliseconds.",
           timer: 2000,
           timerProgressBar: true,
@@ -46,8 +51,10 @@ const Login = () => {
             console.log("I was closed by the timer");
           }
         });
+        Navigate(from,{replace:true});
       })
       .catch((err) => {
+        console.log('email or password not match');
         console.log(err.message);
       });
   };
