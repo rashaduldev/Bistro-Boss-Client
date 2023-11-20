@@ -1,5 +1,46 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import Swal from 'sweetalert2'
+
+/* eslint-disable react/prop-types */
 const FoodCard = ({item}) => {
-    const {name,image,recipe,price}=item;
+      const {name,image,recipe,price,_id}=item;
+  const {user}=useAuth();
+  console.log(user);
+  const navigate=useNavigate();
+  const location=useLocation();
+
+  const handleAddtoCart=(food)=>{
+    console.log(food);
+    if (user && user.email) {
+      console.log("good");
+      const cartItem={
+        menuId:_id,
+        email: user.email,
+        name,
+        image,
+        recipe,
+        price
+      }
+      console.log(cartItem);
+    }
+    else{
+      Swal.fire({
+        title: "You are not Login!",
+        text: "Please Login First then try again.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Here..."
+      }).then((result) => {
+        if (result.isConfirmed) {
+         navigate('/login',{state:{from:location}});
+        }
+      });
+    }
+  }
+
   return (
     <div>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -14,7 +55,7 @@ const FoodCard = ({item}) => {
           <h2 className="card-title">{name}</h2>
           <p>{recipe}</p>
           <div className="card-actions justify-end">
-          <button className="btn btn-outline border-0 border-b-4 mt-10 text-center mx-auto">Order Now</button>
+          <button onClick={()=>handleAddtoCart(item)} className="btn btn-outline border-0 border-b-4 mt-10 text-center mx-auto">Order Now</button>
           </div>
         </div>
       </div>
