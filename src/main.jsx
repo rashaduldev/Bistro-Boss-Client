@@ -13,6 +13,8 @@ import Orderfood from './Pages/Orderfood/Orderfood';
 import Login from './Pages/Login';
 import AuthProvider from './Provider/AuthProvider';
 import Signup from './Pages/Signup';
+import Secret from './Pages/Secret';
+import PrivetRoute from './Route/PrivetRoute';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: 'order/:category',
         element: <Orderfood></Orderfood>,
+      },
+      {
+        path: 'secret',
+        element: <PrivetRoute><Secret></Secret></PrivetRoute>,
       },
     ],
   },

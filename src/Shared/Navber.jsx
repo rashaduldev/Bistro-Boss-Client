@@ -19,6 +19,8 @@ const handleSignout=() => {
     <li><a><Link to={'/'}>Home</Link></a></li>
     <li><a><Link to={'/menu'}>Menu</Link></a></li>
     <li><a><Link to={'/order/salad'}>Our Shop</Link></a></li>
+    <li><a><Link to={'/secret'}>Secret</Link></a></li>
+
     </>
 
     return (
