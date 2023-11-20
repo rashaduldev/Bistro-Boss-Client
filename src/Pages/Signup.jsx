@@ -8,14 +8,16 @@ import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Signup = () => {
-    const {createUser}=useContext(AuthContext);
+    const {createUser,updateUserProfile}=useContext(AuthContext);
     const navigate=useNavigate();
   const {
     register,
     handleSubmit,
     // watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -25,8 +27,26 @@ const Signup = () => {
     const password=data.password;
     createUser(email,password);
     console.log(createUser);
+    const name=data.name;
+    const photo=data.photoURL;
+    updateUserProfile(name,photo)
+    .then(() =>{
+      console.log('User profile updated');
+      reset();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "User Created Successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate('/');
+    })
+    .catch((error) =>{
+      console.log(error);
+    })
 
-    navigate('/');
+    
 
 };
 
