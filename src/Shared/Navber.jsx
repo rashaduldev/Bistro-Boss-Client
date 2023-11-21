@@ -64,7 +64,7 @@ const Navber = () => {
         </a>
       </li>
       <li>
-        <Link to={'/'}>
+        <Link to={'/dashboard/cart'}>
           <button className="btn">
             <FaCartShopping className="" />
             <div className="badge badge-secondary">+{cart.length}</div>
