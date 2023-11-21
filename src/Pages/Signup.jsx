@@ -9,10 +9,12 @@ import { Helmet } from "react-helmet";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPublick from "../Hooks/useAxiosPublick";
 
 const Signup = () => {
     const {createUser,updateUserProfile}=useContext(AuthContext);
     const navigate=useNavigate();
+    const axiosPublic=useAxiosPublick();
   const {
     register,
     handleSubmit,
@@ -25,25 +27,41 @@ const Signup = () => {
     console.log(data)
     const email=data.email;
     const password=data.password;
-    createUser(email,password);
-    console.log(createUser);
-    const name=data.name;
-    const photo=data.photoURL;
-    updateUserProfile(name,photo)
-    .then(() =>{
-      console.log('User profile updated');
-      reset();
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "User Created Successfully",
-        showConfirmButton: false,
-        timer: 1500
+    createUser(email,password)
+  
+
+    .then((result) =>{
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      const name=data.name;
+      const photo=data.photoURL;
+      updateUserProfile(name,photo)
+    
+      // create user and send to database
+      const userInfo={
+        name,
+        email
+      }
+      axiosPublic.post('/users',userInfo)
+      .then((res) =>{
+        console.log('User profile updated');
+        if (res.data) {
+          console.log('user added to the database');
+          reset();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User Created Successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate('/');
+        }
       });
-      navigate('/');
+     
     })
     .catch((error) =>{
-      console.log(error);
+      console.log(error.message);
     })
 
     
@@ -55,7 +73,6 @@ const Signup = () => {
 
   const handleValidateCaptcha = () => {
     const userCapthaValue = captcharef.current.value;
-    console.log(userCapthaValue);
     if (validateCaptcha(userCapthaValue) == true) {
       setDisabled(false);
       // alert('Captcha Matched');
@@ -68,6 +85,7 @@ const Signup = () => {
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
+
   return (
     <div>
           <Helmet>
@@ -182,8 +200,9 @@ const Signup = () => {
                   className="input input-bordered my-5"
                   required
                   name="captcha"
+                  onBlur={handleValidateCaptcha}
                 />
-                {disabled == true ? (
+                {/* {disabled == true ? (
                   <button
                     onClick={handleValidateCaptcha}
                     className="btn btn-outline btn-error"
@@ -197,7 +216,7 @@ const Signup = () => {
                   >
                     Captcha mached
                   </button>
-                )}
+                )} */}
               </div>
               <div className="form-control mt-6">
                 <input disabled={disabled} className="btn btn-primary text-white" type="submit" value={'Sign up'} />
