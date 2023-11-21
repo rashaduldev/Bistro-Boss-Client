@@ -1,10 +1,46 @@
-import { FaNutritionix } from "react-icons/fa6";
+import { FaNutritionix, FaTrash} from "react-icons/fa6";
 import SectionTitle from "../../../Components/SectionTitle";
 import useCart from "../../../Hooks/useCart";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Cart = () => {
-    const [cart]=useCart(); 
+    const [cart,refetch]=useCart(); 
     const totatPrice=cart.reduce((total,item)=>total+item.price,0)
+    const axiosSecure=useAxiosSecure();
+
+    const handleDeleteCart=(id)=>{
+        console.log(id);
+      
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+            //   Swal.fire({
+            //     title: "Deleted!",
+            //     text: "Your file has been deleted.",
+            //     icon: "success"
+            //   });
+            axiosSecure.delete(`/carts/${id}`)
+            .then(res=>{
+                console.log(res);
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                })
+                refetch();
+            })
+            }
+          });
+       
+    }
 
   return (
     <div>
@@ -58,11 +94,14 @@ const Cart = () => {
                     </td>
                     <td>{item.price}</td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">details</button>
+                      <button 
+                      onClick={()=>handleDeleteCart(item._id)}
+                      className="btn btn-ghost btn-xs text-lg">
+                       <FaTrash></FaTrash>
+                      </button>
                     </th>
                   </tr>)
              }
-             
             </tbody>
           </table>
         </div>
