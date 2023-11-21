@@ -1,3 +1,4 @@
+import { FaNutritionix } from "react-icons/fa6";
 import SectionTitle from "../../../Components/SectionTitle";
 import useCart from "../../../Hooks/useCart";
 
@@ -12,21 +13,19 @@ const Cart = () => {
         subHeading={"---My Cart---"}
       ></SectionTitle>
       <div className="">
-        <div className="flex justify-evenly bg-orange-200 py-2 mx-2 rounded">
-        <h2 className="uppercase text-3xl">Total Order: {cart.length}</h2>
-        <h2 className="uppercase text-3xl">Total Price: {totatPrice}</h2>
+        <div className="flex gap-3 justify-evenly bg-orange-200 py-2 mx-2 rounded mb-6">
+        <h2 className="uppercase lg:text-3xl text-center">Total Order: {cart.length}</h2>
+        <h2 className="uppercase lg:text-3xl text-center">Total Price: {totatPrice}</h2>
         <button className="btn btn-primary">Pay</button>
         </div>
-        <div className="divider"></div>
-        <div className="overflow-x-auto">
+       
+        <div className="overflow-x-auto ml-9">
           <table className="table">
             {/* head */}
             <thead>
               <tr>
                 <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
+                 <FaNutritionix></FaNutritionix>
                 </th>
                 <th>ITEM IMAGE</th>
                 <th>ITEM NAME</th>
@@ -36,38 +35,28 @@ const Cart = () => {
             </thead>
             <tbody>
              {
-                cart.map(item=> <tr
+                cart.map((item,index)=> <tr
                 key={item._id}
                 >
                     <th>
-                      <label>
-                        <input type="checkbox" className="checkbox" />
-                      </label>
+                   {index +1}
                     </th>
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle w-12 h-12">
                             <img
-                              src={cart.image}
+                              src={item.image}
                               alt="Avatar Tailwind CSS Component"
                             />
                           </div>
                         </div>
-                        <div>
-                          <div className="font-bold">Hart Hagerty</div>
-                          <div className="text-sm opacity-50">United States</div>
-                        </div>
                       </div>
                     </td>
                     <td>
-                      Zemlak, Daniel and Leannon
-                      <br />
-                      <span className="badge badge-ghost badge-sm">
-                        Desktop Support Technician
-                      </span>
+                     {item.name}
                     </td>
-                    <td>Purple</td>
+                    <td>{item.price}</td>
                     <th>
                       <button className="btn btn-ghost btn-xs">details</button>
                     </th>
