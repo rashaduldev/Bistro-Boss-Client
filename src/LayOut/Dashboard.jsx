@@ -1,11 +1,11 @@
-import { FaArtstation, FaCalendar, FaCartShopping, FaHouseMedical, FaMarsAndVenus, FaMoneyBill } from "react-icons/fa6";
+import { FaArtstation, FaCalendar, FaCartShopping, FaHouseMedical, FaMarsAndVenus, FaMoneyBill, FaSearchengin } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 
 
 const Dashboard = () => {
     return (
         <div className="flex">
-            <div className="w-64 min-h-full bg-orange-500">
+            <div className="w-64 min-h-screen bg-orange-500">
                 <ul className="menu">
                         <li className="mb-2">
                             <NavLink to={'/dashboard/userHome'}>
@@ -37,17 +37,22 @@ const Dashboard = () => {
                            <FaMarsAndVenus></FaMarsAndVenus>
                             My Booking</NavLink>
                         </li>
-                        <div className="divider divider-horizontal"></div>
+                        <div className="divider"></div>
                         <li className="mb-2">
                             <NavLink to={'/'}>
                             <FaHouseMedical></FaHouseMedical>
                             Home</NavLink>
                         </li>
+                        <li className="mb-2">
+                            <NavLink to={'/order/salad'}>
+                            <FaSearchengin></FaSearchengin>
+                            Menu</NavLink>
+                        </li>
 
 
                 </ul>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 ">
                 <Outlet></Outlet>
             </div>
         </div>
