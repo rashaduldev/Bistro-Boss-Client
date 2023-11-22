@@ -18,6 +18,9 @@ const AllUsers = () => {
     axiosSecure.patch(`/users/admin/${user._id}`,)
     .then(res=>{
         console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+            
+        }
     })
   }
   const handleDeleteUser=(user)=>{
