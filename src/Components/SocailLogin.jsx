@@ -2,6 +2,7 @@ import { FaGoogle } from "react-icons/fa6";
 import useAuth from "../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPublick from "../Hooks/useAxiosPublick";
 
 const SocailLogin = () => {
     const {googleSignin}=useAuth();
@@ -9,11 +10,20 @@ const SocailLogin = () => {
     const Location=useLocation();
     const from=Location.state?.from?.pathname || "/";
     console.log("pathname: ", Location.state);
+    const axiosPublic=useAxiosPublick();
 
     const handleGoogleSignin =()=>{
         googleSignin()
         .then(res=>{
             console.log(res);
+            const userInfo={
+              email:res.user?.email,
+              name:res.user?.displayName
+            }
+            axiosPublic.post('/users',userInfo)
+            .then(res=>{
+              console.log(res.data);
+            });
             // reset();
           Swal.fire({
             position: "center",
