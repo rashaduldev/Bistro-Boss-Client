@@ -23,6 +23,7 @@ const Dashboard = () => {
         <ul className="menu">
           {isAdmin ? (
             <>
+            <h2 className="text-center font-bold">Admin Part</h2>
               <li className="mb-2">
                 <NavLink to={"/dashboard/adminHome"}>
                   <FaHouseMedical></FaHouseMedical>
@@ -56,6 +57,7 @@ const Dashboard = () => {
             </>
           ) : (
             <>
+             <h2 className="text-center font-bold">User Part</h2>
               <li className="mb-2">
                 <NavLink to={"/dashboard/userHome"}>
                   <FaHouseMedical></FaHouseMedical>
