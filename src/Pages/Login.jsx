@@ -8,7 +8,7 @@ import {
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate } from 'react-router-dom';
 import SocailLogin from "../Components/SocailLogin";
 
 const Login = () => {
