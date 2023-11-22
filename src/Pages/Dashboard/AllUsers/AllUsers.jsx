@@ -8,7 +8,11 @@ const AllUsers = () => {
   const { data: users = [],refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await axiosSecure.get("/users");
+      const response = await axiosSecure.get("/users",{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access-token")}`
+        }
+      });
       return response.data;
     },
   });
@@ -31,19 +35,15 @@ const handleMakeAdmin = (user) => {
             timer: 1500
           });
         } else {
-          // Handle cases where modifiedCount <= 0
           console.error('No modifications were made.');
         }
       })
       .catch(err => {
         console.error('Error occurred:', err);
-        // Handle error cases, show error message, etc.
-        // You can also use Swal.fire to display an error message
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Something went wrong!',
-          // Additional configuration if needed
         });
       });
   };
