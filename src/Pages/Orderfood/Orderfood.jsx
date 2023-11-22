@@ -4,7 +4,6 @@ import orderimg from "../../assets/shop/banner2.jpg"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useMenu from "../../Hooks/useMenu";
-import FoodCard from "../../Components/FoodCard";
 import Ordertab from "./Ordertab";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
