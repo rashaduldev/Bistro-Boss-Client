@@ -9,6 +9,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import SocailLogin from "../Components/SocailLogin";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -132,7 +133,7 @@ const Login = () => {
                   onBlur={handleValidateCaptcha}
                 />       
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control">
                 <button disabled={disabled} className="btn btn-primary">
                   Login
                 </button>
@@ -144,6 +145,8 @@ const Login = () => {
                 Please signup
               </a>{" "}
             </p>
+            <div className="divider"></div> 
+            <SocailLogin></SocailLogin>
           </div>
         </div>
       </div>

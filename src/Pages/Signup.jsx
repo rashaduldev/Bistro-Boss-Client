@@ -10,6 +10,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublick from "../Hooks/useAxiosPublick";
+import SocailLogin from "../Components/SocailLogin";
 
 const Signup = () => {
     const {createUser,updateUserProfile}=useContext(AuthContext);
@@ -228,6 +229,7 @@ const Signup = () => {
                 Please Login
               </a>{" "}
             </p>
+            <SocailLogin></SocailLogin>
           </div>
         </div>
       </div>
