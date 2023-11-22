@@ -2,27 +2,51 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaTrash, FaUsers } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import useCart from "../../../Hooks/useCart";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const [refetch]=useCart(); 
-  const { data: users = [] } = useQuery({
+  const { data: users = [],refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const response = await axiosSecure.get("/users");
       return response.data;
     },
   });
-  const handleMakeAdmin=(user)=>{
-    axiosSecure.patch(`/users/admin/${user._id}`,)
-    .then(res=>{
+const handleMakeAdmin = (user) => {
+    if (!user || !user._id) {
+      console.error('Invalid user or user ID');
+      return;
+    }
+  
+    axiosSecure.patch(`/users/admin/${user._id}`)
+      .then(res => {
         console.log(res.data);
-        if (res.data.modifiedCount > 0) {
-            
+        if (res.data && res.data.modifiedCount > 0) {
+            refetch();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `${user.name} is an admin now!`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        } else {
+          // Handle cases where modifiedCount <= 0
+          console.error('No modifications were made.');
         }
-    })
-  }
+      })
+      .catch(err => {
+        console.error('Error occurred:', err);
+        // Handle error cases, show error message, etc.
+        // You can also use Swal.fire to display an error message
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          // Additional configuration if needed
+        });
+      });
+  };
   const handleDeleteUser=(user)=>{
     console.log('User deleted successfully',user.email);
     Swal.fire({
@@ -45,7 +69,7 @@ const AllUsers = () => {
             console.log(res);
             Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: `${user.name} has been deleted`,
                 icon: "success"
             })
             refetch();
@@ -82,11 +106,11 @@ const AllUsers = () => {
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>
-                    <button 
+                    {user.role==='admin'?'Admin': <button 
                       onClick={()=>handleMakeAdmin(user)}
                       className="btn btn-ghost btn-xs bg-orange-500 text-2xl">
                        <FaUsers></FaUsers>
-                      </button>
+                      </button>}
                     </td>
                     <td className="text-2xl">
                     <button 
