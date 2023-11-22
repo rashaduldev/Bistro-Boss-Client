@@ -59,11 +59,6 @@ const handleMakeAdmin = (user) => {
         confirmButtonText: "Yes, delete it!"
       }).then((result) => {
         if (result.isConfirmed) {
-        //   Swal.fire({
-        //     title: "Deleted!",
-        //     text: "Your file has been deleted.",
-        //     icon: "success"
-        //   });
         axiosSecure.delete(`/users/${user._id}`)
         .then(res=>{
             console.log(res);
