@@ -83,9 +83,9 @@ const Login = () => {
         <title>Bistro Boss | Login</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-100 w-full">
-        <div className="hero-content flex-col lg:flex-row">
+        <div className="hero-content flex-col lg:flex-row gap-10">
           <div className="text-center lg:text-left mx-auto">
-            <h1 className="text-5xl font-bold lg:ml-28 mb-9">Login now!</h1>
+            <h1 className="text-5xl font-bold text-center mb-9">Login now!</h1>
             <img src={img} alt="" />
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-300">

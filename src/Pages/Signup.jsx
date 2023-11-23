@@ -96,7 +96,7 @@ const Signup = () => {
         <title>Bistro Boss | Signup</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-100 w-full">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero-content flex-col lg:flex-row-reverse gap-10">
           <div className="text-center lg:text-center">
             <h1 className="text-5xl font-bold mb-9">Signup Here</h1>
             <img src={img} alt="" />
