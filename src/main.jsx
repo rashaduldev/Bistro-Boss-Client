@@ -19,12 +19,14 @@ import {
 import Dashboard from "./LayOut/Dashboard";
 import Cart from "./Pages/Dashboard/Cart/Cart";
 import AllUsers from "./Pages/Dashboard/AllUsers/AllUsers";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -59,6 +61,7 @@ const router = createBrowserRouter([
   {
     path:'dashboard',
     element:<PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
+   
     children:[
       {
         path:'cart',
