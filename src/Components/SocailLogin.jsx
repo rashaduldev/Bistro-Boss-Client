@@ -36,7 +36,7 @@ const SocailLogin = () => {
         })
     }
   return (
-    <div className="px-4 flex gap-3 mb-3">
+    <div className="px-4 flex gap-3 mb-3 mx-auto text-center">
       <button 
       onClick={handleGoogleSignin}
       className="btn">

@@ -11,9 +11,12 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublick from "../Hooks/useAxiosPublick";
 import SocailLogin from "../Components/SocailLogin";
+import img from "../assets/others/authentication2.png"
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const Signup = () => {
     const {createUser,updateUserProfile}=useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false);
     const navigate=useNavigate();
     const axiosPublic=useAxiosPublick();
   const {
@@ -92,19 +95,16 @@ const Signup = () => {
           <Helmet>
         <title>Bistro Boss | Signup</title>
       </Helmet>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-base-100 w-full">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Signup Here</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+          <div className="text-center lg:text-center">
+            <h1 className="text-5xl font-bold mb-9">Signup Here</h1>
+            <img src={img} alt="" />
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card shrink-0 w-full max-w-lg shadow-2xl bg-base-300">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-              <div className="form-control">
+             <div className="grid grid-cols-2 gap-4">
+             <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
@@ -155,12 +155,12 @@ const Signup = () => {
                   </span>
                 )}
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="password"
+                  type={!showPassword ? "password" : "text"}
                   name="password"
                   {...register(
                     "password",
@@ -186,12 +186,14 @@ const Signup = () => {
                 {errors.password?.type === "pattern" && (
                   <p className="text-red-600">Please enter at least a symbol, upper and lower case letters and a number</p>
                 )}
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
+                <div onClick={() => setShowPassword(!showPassword)} className="absolute top-[50px] right-3">
+                {showPassword ?  <button> <FaEye></FaEye></button> : <button><FaEyeSlash></FaEyeSlash></button>}
+                 
+                 
+                  
+                </div>
               </div>
+             </div>
               <div className="form-control">
                 <LoadCanvasTemplate />
                 <input
@@ -203,32 +205,18 @@ const Signup = () => {
                   name="captcha"
                   onBlur={handleValidateCaptcha}
                 />
-                {/* {disabled == true ? (
-                  <button
-                    onClick={handleValidateCaptcha}
-                    className="btn btn-outline btn-error"
-                  >
-                    validated
-                  </button>
-                ) : (
-                  <button
-                    onClick={handleValidateCaptcha}
-                    className="btn btn-outline btn-success"
-                  >
-                    Captcha mached
-                  </button>
-                )} */}
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control">
                 <input disabled={disabled} className="btn btn-primary text-white" type="submit" value={'Sign up'} />
               </div>
             </form>
-            <p className="text-center my-4">
+            <p className="text-center">
               Already Have an Account ?{" "}
               <a className="text-red-600 underline" href="login">
                 Please Login
               </a>{" "}
             </p>
+            <div className="divider"></div> 
             <SocailLogin></SocailLogin>
           </div>
         </div>
