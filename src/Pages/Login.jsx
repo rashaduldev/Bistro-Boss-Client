@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import {useLocation, useNavigate } from 'react-router-dom';
 import SocailLogin from "../Components/SocailLogin";
+import img from "../assets/others/authentication2.png"
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -81,17 +82,13 @@ const Login = () => {
       <Helmet>
         <title>Bistro Boss | Login</title>
       </Helmet>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+      <div className="hero min-h-screen bg-base-100 w-full">
+        <div className="hero-content flex-col lg:flex-row">
+          <div className="text-center lg:text-left mx-auto">
+            <h1 className="text-5xl font-bold lg:ml-28 mb-9">Login now!</h1>
+            <img src={img} alt="" />
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-300">
             <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -127,7 +124,7 @@ const Login = () => {
                 <input
                   type="text"
                   placeholder="Type captcha"
-                  className="input input-bordered my-5"
+                  className="input input-bordered my-2"
                   required
                   name="captcha"
                   onBlur={handleValidateCaptcha}
@@ -139,7 +136,7 @@ const Login = () => {
                 </button>
               </div>
             </form>
-            <p className="text-center my-4">
+            <p className="text-center">
               New hare ?{" "}
               <a className="text-red-600 underline" href="signup">
                 Please signup

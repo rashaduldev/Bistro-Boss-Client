@@ -1,4 +1,4 @@
-import { FaGoogle } from "react-icons/fa6";
+import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa6";
 import useAuth from "../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -36,12 +36,24 @@ const SocailLogin = () => {
         })
     }
   return (
-    <div className="p-4">
+    <div className="px-4 flex gap-3 mb-3">
       <button 
       onClick={handleGoogleSignin}
       className="btn">
         <FaGoogle></FaGoogle>
         Google
+      </button>
+      <button 
+      onClick={handleGoogleSignin}
+      className="btn">
+        <FaFacebook></FaFacebook>
+        Facebook
+      </button>
+      <button 
+      onClick={handleGoogleSignin}
+      className="btn">
+        <FaGithub></FaGithub>
+        Github
       </button>
     </div>
   );
