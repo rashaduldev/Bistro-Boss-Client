@@ -43,7 +43,8 @@ const AuthProvider = ({children}) => {
         return()=>{
             return unsubscribe();
         }
-    })
+    },[axiosPublic])
+    
     //Log in with Google
     const googleSignin=()=>{
         setLoading(true);
