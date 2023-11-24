@@ -76,19 +76,19 @@ const CheckoupForm = () => {
                     price:totalPrice,
                     date:new Date(),
                     transactionId:paymentIntent.id,
-                    cartId:cart.map(item=>item.id),
-                    menuItemId:cart.map(item=>item.menuId),
+                    cartIds:cart.map(item=>item.id),
+                    menuItemIds:cart.map(item=>item.menuId),
                     status:'pending',
                 }
               const res= await axiosSecure.post('/payments',payment)
               console.log(res.data,"Payment saved");
               refetch();
+              console.log(refetch);
               if (res.data?.paymentResult?.insertedId) {
-                console.log('sweet is worked');
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Your work has been saved",
+                    title: "Thank you for the payement",
                     showConfirmButton: false,
                     timer: 1500
                   });
