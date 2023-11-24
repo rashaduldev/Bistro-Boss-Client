@@ -20,6 +20,8 @@ import Dashboard from "./LayOut/Dashboard";
 import Cart from "./Pages/Dashboard/Cart/Cart";
 import AllUsers from "./Pages/Dashboard/AllUsers/AllUsers";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import AdminRoute from "./Route/AdminRoute";
+import Payment from "./Pages/Dashboard/Payment/Payment";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -68,8 +70,12 @@ const router = createBrowserRouter([
         element:<Cart></Cart>,
       },
       {
+        path:'payment',
+        element:<Payment></Payment>,
+      },
+      {
         path:'users',
-        element:<AllUsers></AllUsers>,
+        element:<AdminRoute><AllUsers></AllUsers></AdminRoute>,
       },
     ]
   }
