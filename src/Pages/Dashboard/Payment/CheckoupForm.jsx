@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useCart from "../../../Hooks/useCart";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 
 const CheckoupForm = () => {
@@ -13,15 +14,17 @@ const CheckoupForm = () => {
     const {user}=useAuth();
     const elements = useElements();
     const axiosSecure=useAxiosSecure();
-    const [cart]=useCart();
+    const [cart,refetch]=useCart();
     const totalPrice=cart.reduce((total,item)=>total+item.price,0);
 
     useEffect(()=>{
-        axiosSecure.post('/payment-intent',{price:totalPrice})
+        if (totalPrice>0) {
+            axiosSecure.post('/payment-intent',{price:totalPrice})
         .then(res=>{
             console.log(res.data.clientSecret);
             setclientSecret(res.data.clientSecret)
         })
+        }
 
     },[axiosSecure,totalPrice])
 
@@ -78,7 +81,18 @@ const CheckoupForm = () => {
                     status:'pending',
                 }
               const res= await axiosSecure.post('/payments',payment)
-              console.log(res,"res");
+              console.log(res.data,"Payment saved");
+              refetch();
+              if (res.data?.paymentResult?.insertedId) {
+                console.log('sweet is worked');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+              }
             }
         }
     }
