@@ -8,6 +8,7 @@ import useAuth from "../../../Hooks/useAuth";
 const CheckoupForm = () => {
     const [clientSecret,setclientSecret]=useState('');
     const [error,setError]=useState('');
+    const [transactionId,setTransactionId]=useState('');
     const stripe = useStripe();
     const {user}=useAuth();
     const elements = useElements();
@@ -53,8 +54,8 @@ const CheckoupForm = () => {
             payment_method:{
                 card:card,
                 billing_details:{
-                    name:user?.displayName || 'anonymous',
-                    email:user?.email || 'anonymous'
+                    email: user?.email || 'anonymous',
+                    name: user?.displayName || 'anonymous'
                 }
             }
         })
@@ -62,6 +63,20 @@ const CheckoupForm = () => {
             console.log('Confirmation Error');
         }else{
             console.log('Payment intent',paymentIntent);
+            if (paymentIntent.status === "succeeded") {
+                console.log('transaction id:',paymentIntent.id);
+                setTransactionId(paymentIntent.id);
+
+                // now save the transaction details in the Database
+                const payment={
+                    email:user.email,
+                    price:totalPrice,
+                    date:new Date(),
+                    cartId:cart.map(item=>item.id),
+                    menuItemId:cart.map(item=>item.menuId),
+                    status:'pending',
+                }
+            }
         }
     }
     return (
@@ -87,6 +102,9 @@ const CheckoupForm = () => {
         Pay
       </button>
       <p className="text-red-500">{error}</p>
+      {
+        transactionId && <p className="text-green-500">Your transaction id ,{transactionId}</p>
+      }
             </form>
         </div>
     );
