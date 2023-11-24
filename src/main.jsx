@@ -22,6 +22,7 @@ import AllUsers from "./Pages/Dashboard/AllUsers/AllUsers";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import AdminRoute from "./Route/AdminRoute";
 import Payment from "./Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "./Pages/Dashboard/PaymentHistory/PaymentHistory";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path:'payment',
         element:<Payment></Payment>,
+      },
+      {
+        path:'paymentHistory',
+        element:<PaymentHistory></PaymentHistory>,
       },
       {
         path:'users',
