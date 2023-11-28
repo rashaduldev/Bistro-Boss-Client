@@ -46,7 +46,7 @@ const Signup = () => {
         name,
         email
       }
-      axiosPublic.post('/users',userInfo)
+      lic.post('/users',userInfo)
       .then((res) =>{
         console.log('User profile updated');
         if (res.data) {
