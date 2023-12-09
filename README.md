@@ -1,8 +1,36 @@
-# React + Vite
+# Ride-Share for Seniors Website with React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an Ride realeted website built using React,express js, allowing users to ride for various services. Below are some of the project features:
 
-Currently, two official plugins are available:
+## Project Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Services Catalog:**
+  - Display a wide range of service in an organized catalog.
+  - Users can browse Service by category, price, or discription.
+
+- **User Authentication and Profiles:**
+  - Implement user authentication to allow users to create accounts and log in.
+  - Users can view their order history, save favorite Services, and manage their profile details.
+
+- **Booking service and Checkout:**
+  - Users can add Services to their booking and proceed to checkout.
+  - Secure payment processing and order confirmation.
+
+- **Riding Reviews :**
+  - Allow users to leave services reviews.
+  - Services pages display average services.  
+
+- **Responsive Design:**
+  - The website is fully responsive, ensuring a seamless riding experience on various devices.
+## Installation and Usage
+
+1. Clone this repository to your local machine.
+2. Install the required dependencies using `npm install`.
+3. Configure environment variables for API keys and other settings
+4. Run the development server using `npm start`.
+
+## Demo
+
+[Link to Demo](https://hesitant-history.surge.sh/)
+
+
