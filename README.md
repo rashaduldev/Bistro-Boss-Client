@@ -31,6 +31,6 @@ This is an Ride realeted website built using React,express js, allowing users to
 
 ## Demo
 
-[Link to Demo](https://hesitant-history.surge.sh/)
+[Link to Demo](https://sturdy-support.surge.sh)
 
 
